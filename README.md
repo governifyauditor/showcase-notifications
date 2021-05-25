@@ -134,7 +134,7 @@ docker restart bluejay-scope-manager
     }
 }
 ```
-5. Setup repository and add an info.yml file in the root of your repo (main or master branch). You can check this [template](https://github.com/governify/audited-project-template/blob/main/info.yml) or this [example](https://github.com/governifyauditor/goldenflow-showcase-project/blob/main/info.yml) and add it.
+5. Setup repository and add an info.yml file in the root of your repo (main or master branch). You can check this [template](https://github.com/governify/audited-project-template/blob/main/info.yml) or this [example](https://github.com/governifyauditor/goldenflow-showcase-project/blob/main/info.yml) or this [one](https://github.com/governifyauditor/showcase-notifications/blob/main/info.yml) and add it.
 
 6. Register in the System. You can checkout [this guide](https://www.governify.io/quickstart/add-teams) about how to add a team in the system.
 7. Add the script `dashboardGenerator.js` (can be found at the root of this repository) to the assets at /public/director in case it is not present. You will have to add a [Grafana API token](https://grafana.com/docs/grafana/latest/http_api/auth/#create-api-token) at the beggining of this script. This script is the responsible to persist the dashboards in order for Grafana to notify on any change.
