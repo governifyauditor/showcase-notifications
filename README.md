@@ -3,7 +3,11 @@ This is a showcase project to exemplify the process of setting up the notificati
 
 We will be using Slack but the process should be the same except the TPA notifications configuration.
 
-![Notification example](https://github.com/governifyauditor/showcase-notifications/blob/main/img/notification_example.PNG?raw=true)
+<center>
+    <kbd>
+        <img src="https://github.com/governifyauditor/showcase-notifications/blob/main/img/notification_example.PNG?raw=true">
+    </kbd>
+</center>
 
 ## System setup
 
