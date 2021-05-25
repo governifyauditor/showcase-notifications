@@ -43,6 +43,12 @@ docker restart bluejay-scope-manager
                         "description": "Project",
                         "type": "string",
                         "default": "1010101010"
+                    },
+                    "class": {
+                        "name": "Class",
+                        "description": "Group some projects",
+                        "type": "string",
+                        "default": "2020202020"
                     }
                 }
             },
@@ -136,7 +142,7 @@ docker restart bluejay-scope-manager
 ```
 5. Setup repository and add an info.yml file in the root of your repo (main or master branch). You can check this [template](https://github.com/governify/audited-project-template/blob/main/info.yml) or this [example](https://github.com/governifyauditor/goldenflow-showcase-project/blob/main/info.yml) or this [one](https://github.com/governifyauditor/showcase-notifications/blob/main/info.yml) and add it.
 
-6. Register in the System. You can checkout [this guide](https://www.governify.io/quickstart/add-teams) about how to add a team in the system.
+6. Register the project in the System in the `testing-notification` course we've just added. You can checkout [this guide](https://www.governify.io/quickstart/add-teams) about how to add a team in the system.
 7. Add the script `dashboardGenerator.js` (can be found at the root of this repository) to the assets at /public/director in case it is not present. You will have to add a [Grafana API token](https://grafana.com/docs/grafana/latest/http_api/auth/#create-api-token) at the beggining of this script. This script is the responsible to persist the dashboards in order for Grafana to notify on any change.
 8. Enable the task execution at the Director. For it you need to POST this information:
 ```
@@ -153,7 +159,9 @@ docker restart bluejay-scope-manager
 }
 ```
 It is setted up to run every day to persist any new dashboard and update any modification.
-9. Access the UI at ui[BLUEJAY_SERVICES_PREFIX][BLUEJAY_DNS_SUFFIX] (f.e. https://ui.bluejay.mydomain.org) and load the course (testing-notifications). Then access to your project.
+9. Access the UI at ui[BLUEJAY_SERVICES_PREFIX][BLUEJAY_DNS_SUFFIX] (f.e. https://ui.bluejay.mydomain.org) and load the course (testing-notifications). Then click on create TPA and you will access to it.
+
+![UI Create TPA](https://github.com/governifyauditor/showcase-notifications/blob/main/img/ui_main.PNG?raw=true)
 
 ## Workflow Simulation
 The TPA template used in this example is very simple and its only purpose is to demonstrate the notifications functioning and capabilities.
@@ -161,6 +169,8 @@ The TPA template used in this example is very simple and its only purpose is to 
 It contains a single metric and guarantee, being the TP: "There must be at least 2 branch creations every hour.". If only a branch is created, the TP won't be fulfilled and thus a notification should be received in the configured channel. If 4 branches are created, there should be no notification.
 
 As the system is not configured to automatically compute the metrics, we will have to click on the Compute Metrics in the UI and select the correct interval of time.
+
+![UI Compute Metrics](https://github.com/governifyauditor/showcase-notifications/blob/main/img/ui_tpa.PNG?raw=true)
 
 ### Steps for receiving a notification
 1. Create a branch
