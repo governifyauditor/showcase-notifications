@@ -150,14 +150,17 @@ docker restart bluejay-scope-manager
 
 6. Register the project in the System in the `testing-notification` course we've just added. You can checkout [this guide](https://www.governify.io/quickstart/add-teams) about how to add a team in the system.
 7. Add the script `dashboardGenerator.js` (can be found at the root of this repository) to the assets at /public/director in case it is not present. You will have to add a [Grafana API token](https://grafana.com/docs/grafana/latest/http_api/auth/#create-api-token) at the beggining of this script. This script is the responsible to persist the dashboards in order for Grafana to notify on any change.
-8. Enable the task execution at the Director. For it you need to POST this information:
+
+8. Access the UI at ui[BLUEJAY_SERVICES_PREFIX][BLUEJAY_DNS_SUFFIX] (f.e. https://ui.bluejay.mydomain.org) and load the course (testing-notifications). Then click on create TPA and you will access to it. Copy the agreement ID on the left part of the view for the next step.
+
+9. Enable the task execution at the Director. For it you need to POST this information adding the agreement ID under `config.agreementId`:
 ```
 {
     "id": "dashboard-generation",
     "script": "http://bluejay-assets-manager/api/v1/public/director/dashboardGenerator.js",
     "running": true,
     "config": {
-        "agreementId": "tpa-CS169L-GH-governifyauditor_goldenflow-showcase-project"
+        "agreementId": "YOUR_TPA_ID"
     },
     "init": "2020-01-01T00:00:00",
     "end": "2030-01-01T00:00:00",
@@ -165,8 +168,6 @@ docker restart bluejay-scope-manager
 }
 ```
 It is setted up to run every day to persist any new dashboard and update any modification.
-
-9. Access the UI at ui[BLUEJAY_SERVICES_PREFIX][BLUEJAY_DNS_SUFFIX] (f.e. https://ui.bluejay.mydomain.org) and load the course (testing-notifications). Then click on create TPA and you will access to it.
 
 ![UI Create TPA](https://github.com/governifyauditor/showcase-notifications/blob/main/img/ui_main.PNG?raw=true)
 
