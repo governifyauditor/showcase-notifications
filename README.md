@@ -64,7 +64,7 @@ docker restart bluejay-scope-manager
                         "name": "slack",
                         "type": "slack",
                         "settings": {
-                            "url": "ENTER YOUR SLACK WEBHOOK HERE"
+                            "url": "https://hooks.slack.com/services/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"
                         }
                     }
                 }
@@ -81,9 +81,24 @@ docker restart bluejay-scope-manager
             },
             "dashboards": {
                 "main": {
-                    "base": "$_[infrastructure.internal.assets.default]/api/v1/public/grafana-dashboards/tpa/base.json",
-                    "modifier": "$_[infrastructure.internal.assets.default]/api/v1/public/grafana-dashboards/tpa/modifier.js",
-                    "overlay": "$_[infrastructure.internal.assets.default]/api/v1/public/grafana-dashboards/tpa/overlay.js"
+                    "default": true,
+                    "overlay": "$_[infrastructure.internal.assets.default]/api/v1/public/grafana-dashboards/blocks/overlay.js",
+                    "overlay2": "blocks/overlay.js",
+                    "base": "$_[infrastructure.internal.assets.default]/api/v1/public/grafana-dashboards/blocks/base.json",
+                    "base2": "blocks/base.json",
+                    "modifier": "$_[infrastructure.internal.assets.default]/api/v1/public/grafana-dashboards/blocks/modifier.js",
+                    "config": {
+                        "blocks": [                            
+                            {
+                                "type": "gauge-time",
+                                "order": 2,
+                                "guarantee": "AT_LEAST_2_NEW_BRANCHES_EVERY_HOUR",
+                                "config": {
+                                    "time-graph-title": "New branches every hour."
+                                }
+                            }
+                        ]
+                    }
                 }
             }
         }
@@ -116,7 +131,7 @@ docker restart bluejay-scope-manager
         "guarantees": [
             {
                 "id": "AT_LEAST_2_NEW_BRANCHES_EVERY_HOUR",
-                "notes": "#### Description\r\n```\r\nTP-1: There must be at least 2 new branches every day.",
+                "notes": "#### Description\r\n```\r\nTP-1: There must be at least 2 new branches every hour.",
                 "scope": {
                     "$ref": "#/context/definitions/scopes/development"
                 },
@@ -186,9 +201,9 @@ As the system is not configured to automatically compute the metrics, we will ha
 
 You should receive a notification.
 
-### Steps for receiving a notification
-1. Create three branches
+### Steps for receiving a fix notification
+1. Create another branch
 2. Compute Metrics for the interval
 
-You shouldn't receive a notification.
+You should receive a OK notification telling the TP is being fullfilled now.
 
