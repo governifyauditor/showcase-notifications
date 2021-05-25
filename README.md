@@ -3,6 +3,8 @@ This is a showcase project to exemplify the process of setting up the notificati
 
 We will be using Slack but the process should be the same except the TPA notifications configuration.
 
+![Notification example](https://github.com/governifyauditor/showcase-notifications/blob/main/img/notification_example.PNG?raw=true)
+
 ## System setup
 
 0. Deploy the system if you have not done it yet. The guide is available at [Governify's webpage](https://www.governify.io/quickstart/auditing-agile-2.0/).
@@ -88,11 +90,11 @@ docker restart bluejay-scope-manager
                 "collector": {
                     "$ref": "#/context/definitions/collectors/eventcollector"
                 },
-                "metric": {
+                "measure": {
                     "computing": "actual",
                     "element": "number",
                     "event": {
-                        "ghwrapper": {
+                        "github": {
                             "events": {
                                 "type": "CreateEvent",
                                 "payload": {
@@ -110,7 +112,7 @@ docker restart bluejay-scope-manager
         "guarantees": [
             {
                 "id": "AT_LEAST_2_NEW_BRANCHES_EVERY_HOUR",
-                "notes": "#### Description\r\n```\r\nTP-1: There must be at least 2 new branches every hour.",
+                "notes": "#### Description\r\n```\r\nTP-1: There must be at least 2 new branches every day.",
                 "scope": {
                     "$ref": "#/context/definitions/scopes/development"
                 },
@@ -130,7 +132,7 @@ docker restart bluejay-scope-manager
                         },
                         "window": {
                             "type": "static",
-                            "period": "hourly",
+                            "period": "daily",
                             "initial": "2018-01-01"
                         }
                     }
@@ -159,6 +161,7 @@ docker restart bluejay-scope-manager
 }
 ```
 It is setted up to run every day to persist any new dashboard and update any modification.
+
 9. Access the UI at ui[BLUEJAY_SERVICES_PREFIX][BLUEJAY_DNS_SUFFIX] (f.e. https://ui.bluejay.mydomain.org) and load the course (testing-notifications). Then click on create TPA and you will access to it.
 
 ![UI Create TPA](https://github.com/governifyauditor/showcase-notifications/blob/main/img/ui_main.PNG?raw=true)
@@ -166,7 +169,7 @@ It is setted up to run every day to persist any new dashboard and update any mod
 ## Workflow Simulation
 The TPA template used in this example is very simple and its only purpose is to demonstrate the notifications functioning and capabilities.
 
-It contains a single metric and guarantee, being the TP: "There must be at least 2 branch creations every hour.". If only a branch is created, the TP won't be fulfilled and thus a notification should be received in the configured channel. If 4 branches are created, there should be no notification.
+It contains a single metric and guarantee, being the TP: "There must be at least 2 branch creations every day.". If only a branch is created, the TP won't be fulfilled and thus a notification should be received in the configured channel. If 4 branches are created, there should be no notification.
 
 As the system is not configured to automatically compute the metrics, we will have to click on the Compute Metrics in the UI and select the correct interval of time.
 
