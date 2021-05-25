@@ -1,0 +1,14 @@
+project:
+  name: 'Showcase Notifications'
+  owner: 'Governify'
+  teamId: '0'
+  identities:
+    github:
+      url: 'https://github.com/governifyauditor/showcase-notifications'
+  members:
+    member1:
+      name: 'Governify'
+      surname: 'Auditor' 
+      githubUsername: 'governifyauditor'
+      pivotalUsername: 'governifyauditor'
+      herokuEmail: 'governify.auditor@gmail.com'
