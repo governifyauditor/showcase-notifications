@@ -64,7 +64,7 @@ docker restart bluejay-scope-manager
                         "name": "slack",
                         "type": "slack",
                         "settings": {
-                            "url": "https://hooks.slack.com/services/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"
+                            "url": "YOUR_SLACK_WEBHOOK_HERE"
                         }
                     }
                 }
